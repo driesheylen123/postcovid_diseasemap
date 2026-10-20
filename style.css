@@ -107,7 +107,7 @@ footer a{color:#fff}
 .callout .go{flex:none;background:var(--orange);color:#fff;font-weight:700;padding:.5rem 1rem;border-radius:999px;white-space:nowrap}
 
 /* workflow */
-.flow{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1.6rem}
+.flow{list-style:none;margin:1.5rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem}
 .fstep{position:relative;background:var(--card);border:1px solid var(--line);border-top:5px solid var(--brand);border-radius:var(--radius);padding:1.1rem}
 .fstep:nth-child(even){border-top-color:var(--orange)}
 .fstep:not(:last-child)::after{content:"\2192";position:absolute;right:-1.45rem;top:50%;transform:translateY(-50%);font-size:1.4rem;color:var(--orange);font-weight:700}

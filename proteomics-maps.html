@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Proteomics maps | Post-COVID Disease Map</title>
 <meta name="description" content="How proteomics-based interaction maps are generated for the post-COVID disease map.">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <header class="site-header"><div class="wrap">
@@ -23,39 +23,35 @@
 <section><div class="wrap">
   <div class="eyebrow">Workflow</div>
   <h2>How the proteomics maps are generated</h2>
-  <p class="sub">Each proteomics panel is turned into an annotatable interaction map in five steps. The same workflow applies to every system-focused dataset.</p>
+  <p class="sub">Measured proteins are grouped by Gene Ontology top-level categories, linked through the Clinical Knowledge Graph, and turned into annotatable maps. The same workflow applies to every system-focused dataset.</p>
 
   <ol class="flow">
     <li class="fstep"><div class="n">1</div>
-      <h3>Proteomics panel</h3>
-      <p class="io">Input: measured proteins</p>
-      <p>A proteomics panel (for example Olink panels on inflammation and metabolism) provides the list of proteins measured for a given system.</p></li>
+      <h3>Measured proteins</h3>
+      <p class="io">Input: all proteins in the dataset</p>
+      <p>Olink sub-panels are arbitrary subdivisions of the measured proteins, so they are not used as categories. All measured proteins go into the workflow.</p></li>
     <li class="fstep"><div class="n">2</div>
-      <h3>GO top-level extraction</h3>
-      <p class="io">Output: proteins grouped per GO top level</p>
-      <p>Proteins are annotated with Gene Ontology and mapped onto its top-level terms, giving broad functional groups per panel.</p></li>
+      <h3>GO top-level categories</h3>
+      <p class="io">Output: protein list per category</p>
+      <p>Gene Ontology top-level terms are extracted and serve as the categories. Each one holds the measured proteins that belong to it.</p></li>
     <li class="fstep"><div class="n">3</div>
-      <h3>Knowledge graph query</h3>
-      <p class="io">Output: interaction network per top level</p>
-      <p>For each group, the Clinical Knowledge Graph is queried for reactions among the mapped proteins.</p></li>
+      <h3>Clinical Knowledge Graph query</h3>
+      <p class="io">Output: interaction network per category</p>
+      <p>The proteins of each category are queried in the Clinical Knowledge Graph for reactions among them.</p></li>
     <li class="fstep"><div class="n">4</div>
-      <h3>SBML conversion</h3>
-      <p class="io">Output: SBML (XML) file</p>
-      <p>Each interaction network is converted to SBML, the XML-based standard for systems biology models.</p></li>
-    <li class="fstep"><div class="n">5</div>
-      <h3>Annotatable map</h3>
+      <h3>SBML to annotatable map</h3>
       <p class="io">Output: Minerva map</p>
-      <p>The SBML files are uploaded to Minerva as maps that can be annotated, explored and overlaid with data.</p></li>
+      <p>Each interaction network is converted to SBML (XML) and uploaded to Minerva as a map that can be annotated and overlaid with data.</p></li>
   </ol>
 
   <div class="bg">
     <h2>Background</h2>
     <div class="bggrid">
-      <div class="card"><h3>1. Panels</h3><p>Targeted proteomics panels measure a defined set of proteins. Panels differ in focus, so each one covers a different part of the biology of a system. <!-- TODO: list the panels used per system --></p></div>
-      <div class="card"><h3>2. Gene Ontology</h3><p>The Gene Ontology (GO) is a hierarchical vocabulary describing biological processes, molecular functions and cellular components. Its top-level terms are the broadest categories, which makes them a practical way to split a panel into interpretable groups. <!-- TODO: state which GO branch and which top levels were used --></p></div>
-      <div class="card"><h3>3. Clinical Knowledge Graph</h3><p>The Clinical Knowledge Graph (CKG) integrates omics data, biomedical databases and literature into one graph of proteins, their relationships and clinical context. Querying it for the proteins in a GO top level returns the known reactions among them. <!-- TODO: add version and query criteria --></p></div>
-      <div class="card"><h3>4. SBML</h3><p>The Systems Biology Markup Language (SBML) is an XML-based exchange format for models of biological processes. Converting the networks to SBML makes them readable by standard systems biology tools.</p></div>
-      <div class="card"><h3>5. Minerva</h3><p>Minerva is a web platform for visualizing and annotating molecular maps. Uploaded maps can be searched, annotated and combined with overlay data, the same way as the post-COVID disease map.</p></div>
+      <div class="card"><h3>Why GO categories, not panels</h3><p>Olink sub-panels group proteins for practical reasons, not by biology. Gene Ontology (GO) is a hierarchical vocabulary of biological processes, molecular functions and cellular components. Its top-level terms are the broadest categories, which gives biologically meaningful groups that proteins can be assigned to. A protein can belong to more than one category. <!-- TODO: state which GO branch and which top-level terms were used --></p></div>
+      <div class="card"><h3>Clinical Knowledge Graph (CKG)</h3><p>The CKG is an open-source platform (Python, MIT license) with two aims: to build a graph database from experimental data and public biomedical databases, and to automate knowledge discovery on that graph. In its original description it holds more than 16 million nodes and 220 million relationships, drawn from sources such as UniProt, STRING, IntAct, Reactome, SIGNOR and CORUM, plus ontologies including GO. Here it is used as the source of known reactions among the proteins of each category. <!-- TODO: add CKG version and query criteria --><br>
+      <a href="https://github.com/MannLabs/CKG" target="_blank" rel="noopener">CKG on GitHub</a> · <a href="https://ckg.readthedocs.io" target="_blank" rel="noopener">Documentation</a></p></div>
+      <div class="card"><h3>SBML</h3><p>The Systems Biology Markup Language (SBML) is an XML-based exchange format for models of biological processes. Converting the networks to SBML makes them readable by standard systems biology tools.</p></div>
+      <div class="card"><h3>Minerva</h3><p>Minerva is a web platform for visualizing and annotating molecular maps. Uploaded maps can be searched, annotated and combined with overlay data, the same way as the post-COVID disease map.</p></div>
     </div>
   </div>
 
