@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proteomics maps | Post-COVID Disease Map</title>
+<meta name="description" content="How proteomics-based interaction maps are generated for the post-COVID disease map.">
+<link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="index.html">Post-COVID Disease Map</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="systems.html">Systems</a>
+    <a href="proteomics-maps.html" class="active">Proteomics</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</div></header>
+<main>
+<section><div class="wrap">
+  <div class="eyebrow">Workflow</div>
+  <h2>How the proteomics maps are generated</h2>
+  <p class="sub">Each proteomics panel is turned into an annotatable interaction map in five steps. The same workflow applies to every system-focused dataset.</p>
+
+  <ol class="flow">
+    <li class="fstep"><div class="n">1</div>
+      <h3>Proteomics panel</h3>
+      <p class="io">Input: measured proteins</p>
+      <p>A proteomics panel (for example Olink panels on inflammation and metabolism) provides the list of proteins measured for a given system.</p></li>
+    <li class="fstep"><div class="n">2</div>
+      <h3>GO top-level extraction</h3>
+      <p class="io">Output: proteins grouped per GO top level</p>
+      <p>Proteins are annotated with Gene Ontology and mapped onto its top-level terms, giving broad functional groups per panel.</p></li>
+    <li class="fstep"><div class="n">3</div>
+      <h3>Knowledge graph query</h3>
+      <p class="io">Output: interaction network per top level</p>
+      <p>For each group, the Clinical Knowledge Graph is queried for reactions among the mapped proteins.</p></li>
+    <li class="fstep"><div class="n">4</div>
+      <h3>SBML conversion</h3>
+      <p class="io">Output: SBML (XML) file</p>
+      <p>Each interaction network is converted to SBML, the XML-based standard for systems biology models.</p></li>
+    <li class="fstep"><div class="n">5</div>
+      <h3>Annotatable map</h3>
+      <p class="io">Output: Minerva map</p>
+      <p>The SBML files are uploaded to Minerva as maps that can be annotated, explored and overlaid with data.</p></li>
+  </ol>
+
+  <div class="bg">
+    <h2>Background</h2>
+    <div class="bggrid">
+      <div class="card"><h3>1. Panels</h3><p>Targeted proteomics panels measure a defined set of proteins. Panels differ in focus, so each one covers a different part of the biology of a system. <!-- TODO: list the panels used per system --></p></div>
+      <div class="card"><h3>2. Gene Ontology</h3><p>The Gene Ontology (GO) is a hierarchical vocabulary describing biological processes, molecular functions and cellular components. Its top-level terms are the broadest categories, which makes them a practical way to split a panel into interpretable groups. <!-- TODO: state which GO branch and which top levels were used --></p></div>
+      <div class="card"><h3>3. Clinical Knowledge Graph</h3><p>The Clinical Knowledge Graph (CKG) integrates omics data, biomedical databases and literature into one graph of proteins, their relationships and clinical context. Querying it for the proteins in a GO top level returns the known reactions among them. <!-- TODO: add version and query criteria --></p></div>
+      <div class="card"><h3>4. SBML</h3><p>The Systems Biology Markup Language (SBML) is an XML-based exchange format for models of biological processes. Converting the networks to SBML makes them readable by standard systems biology tools.</p></div>
+      <div class="card"><h3>5. Minerva</h3><p>Minerva is a web platform for visualizing and annotating molecular maps. Uploaded maps can be searched, annotated and combined with overlay data, the same way as the post-COVID disease map.</p></div>
+    </div>
+  </div>
+
+  <p style="margin-top:2rem"><a class="btn" href="https://postcovid.elixir-luxembourg.org/minerva/index.html?id=OL_phenotype_layer2_0&perfectMatch=false&z=4&x=1535&y=1105.25&modelId=416&backgroundId=2" target="_blank" rel="noopener">Disease map</a>
+  <a class="btn ghost" href="systems.html">Back to systems</a></p>
+</div></section>
+</main>
+<footer><div class="wrap">
+  Maastricht Centre for Systems Biology and Bioinformatics (MaCSBio), Maastricht University.<br>
+  Funded by ZonMw (project number 11080022410017).
+</div></footer>
+</body></html>
